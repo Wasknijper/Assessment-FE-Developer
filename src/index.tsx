@@ -1,16 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./pages/App";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Overview } from "./pages/Overview/";
+import { NewPassword } from "./pages/NewPassword/NewPassword";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BrowserRouter>
+    <header>
+      <a href="/">Overview</a>
+      <a href="/new">Add new password</a>
+    </header>
+    <Routes>
+      <Route path="/" element={<Overview />} />
+      <Route path="new" element={<NewPassword />} />
+    </Routes>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
