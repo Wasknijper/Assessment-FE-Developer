@@ -1,5 +1,11 @@
-import * as customers from "../data/customers.json";
+import customers from "../data/customers.json";
+import { Customer } from "../types";
 
-export const getCustomers = () => {
-  return setTimeout(() => customers, 10);
+export const getCustomers = (): Promise<Customer[]> => {
+  console.log(customers);
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      resolve(customers);
+    }, 100)
+  );
 };
