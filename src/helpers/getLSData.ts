@@ -1,7 +1,7 @@
 import { LocalStorageKey } from "../constants/LocalStorageKey";
 import { Password } from "../types";
 
-export const getLSItem = (): Password[] | null => {
+export const getLSData = (): Password[] | null => {
   const rawData = localStorage.getItem(LocalStorageKey);
 
   if (!rawData) {
