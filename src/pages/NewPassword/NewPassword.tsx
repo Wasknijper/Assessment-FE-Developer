@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { PasswordForm } from "../../components";
 import { getCustomers } from "../../helpers";
 import { Customer } from "../../types";
 
@@ -8,7 +9,6 @@ export const NewPassword = () => {
 
   useEffect(() => {
     const fetchCustomers = async () => {
-      console.log("hoi");
       const data = await getCustomers();
 
       setIsLoading(false);
@@ -21,32 +21,7 @@ export const NewPassword = () => {
   return (
     <div>
       <h1>Add new password</h1>
-      {isLoading ? (
-        "Loading"
-      ) : (
-        <form>
-          <label>
-            Title*
-            <input name="title" required></input>
-          </label>
-          <label>
-            Password*
-            <input name="title" type="password" required></input>
-          </label>
-          {customers && (
-            <label>
-              Customer
-              <select>
-                {customers.map(({ name }) => (
-                  <option key={name} value={name}>
-                    {name}
-                  </option>
-                ))}
-              </select>
-            </label>
-          )}
-        </form>
-      )}
+      {isLoading ? "Loading" : <PasswordForm customers={customers} />}
     </div>
   );
 };
