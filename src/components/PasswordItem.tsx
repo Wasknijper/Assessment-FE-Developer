@@ -16,7 +16,7 @@ export const PasswordItem = ({ item, color = "#000" }: Props) => {
       <h2>{title}</h2>
       {customer && <h3 style={{ color: color }}>{customer}</h3>}
       {showPassword ? (
-        password
+        <div onClick={() => setShowPassword(false)}>{password}</div>
       ) : (
         <button type="button" onClick={() => setShowPassword(true)}>
           Show password
