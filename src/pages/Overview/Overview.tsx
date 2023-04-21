@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { PasswordItem } from "../../components";
 import { getCustomers, getLSData } from "../../helpers";
 import { Customer, Password } from "../../types";
 
@@ -22,13 +23,13 @@ export const Overview = () => {
   }, []);
 
   const getCustomerColor = (name?: string) => {
-    if (!customers || !name) return "#000";
+    if (!customers || !name) return;
 
     const selectedCustomer = customers?.find(
       (customer) => customer.name === name
     );
 
-    return selectedCustomer?.color || "#000";
+    return selectedCustomer?.color;
   };
 
   return (
@@ -38,16 +39,13 @@ export const Overview = () => {
         "Loading"
       ) : (
         <div>
-          {passwords?.map(({ title, customer }) => {
-            const color = getCustomerColor(customer);
-
-            return (
-              <div style={{ border: `2px solid ${color}` }} key={title}>
-                <h2>{title}</h2>
-                {customer && <h3 style={{ color: color }}>{customer}</h3>}
-              </div>
-            );
-          })}
+          {passwords?.map((password) => (
+            <PasswordItem
+              key={password.title}
+              item={password}
+              color={getCustomerColor(password.customer)}
+            />
+          ))}
         </div>
       )}
     </div>
